@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useState, useMemo } from 'react';
 import Papa from 'papaparse';
 import {
@@ -251,7 +253,10 @@ export default function App() {
 
   // AI State
   const [apiKey, setApiKey] = useState(() => {
-    return localStorage.getItem('gemini_api_key') || import.meta.env.VITE_GEMINI_KEY || '';
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('gemini_api_key') || process.env.NEXT_PUBLIC_GEMINI_KEY || '';
+    }
+    return '';
   });
   const [aiModel, setAiModel] = useState('gemini-2.5-flash-preview');
   const [aiInsights, setAiInsights] = useState(null);
@@ -269,7 +274,7 @@ export default function App() {
   }, [isDarkMode]);
 
   useEffect(() => {
-    fetch('http://localhost:5001/api/sales')
+    fetch('/api/sales')
       .then(res => res.json())
       .then(data => {
         const parsedData = data.map(row => ({

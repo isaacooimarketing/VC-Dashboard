@@ -46,7 +46,7 @@ export const getSalesData = async () => {
  */
 const fetchFromCSV = async () => {
     console.log('Fetching data from CSV...');
-    const csvFilePath = path.join(__dirname, 'data', 'sales_data.csv');
+    const csvFilePath = path.join(process.cwd(), 'data', 'sales_data.csv');
 
     if (!fs.existsSync(csvFilePath)) {
         throw new Error('Sales data file not found at ' + csvFilePath);

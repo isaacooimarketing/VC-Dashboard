@@ -1,6 +1,6 @@
 # 🌀 Vortex Analytics Dashboard
 
-A premium, state-of-the-art Sales Dashboard featuring real-time AI insights, high-performance charting, and a hybrid data layer supporting both CSV and Cloud Databases.
+A premium, state-of-the-art Sales Dashboard featuring real-time AI insights, high-performance charting, and a hybrid data layer supporting both CSV and Cloud Databases. Now fully powered by **Next.js App Router** for seamless Vercel deployment.
 
 ![Vortex Analytics Preview](file:///C:/Users/User/.gemini/antigravity/brain/c810bf5c-8241-4d06-9d20-79aa44148084/dashboard_populated_1772956549394.png)
 
@@ -9,8 +9,8 @@ A premium, state-of-the-art Sales Dashboard featuring real-time AI insights, hig
 - 🌓 **Dynamic Theme Engine**: Seamlessly switch between light and dark modes with a single click. High-contrast, premium aesthetic.
 - 🤖 **AI-Powered Business Intelligence**: Integrated with Google Gemini (3.1 Pro/2.5 Flash) to generate automated alerts, opportunities, and business suggestions.
 - 📊 **Interactive Data Visualizations**: Real-time charts powered by Recharts, enabling trends analysis by date, channel, and product.
-- 📡 **Hybrid Data Layer**: High-performance Express API serving data from local CSV or Supabase Cloud DB.
-- 🛠️ **Developer-First Design**: Fully responsive, built with React, Tailwind CSS, and Framer Motion.
+- 📡 **Hybrid Data Layer**: High-performance Next.js API Routes serving data from local CSV or Supabase Cloud DB.
+- 🛠️ **Developer-First Design**: Fully responsive, built with React, Tailwind CSS, and Framer Motion on top of the robust Next.js framework.
 
 ---
 
@@ -22,10 +22,10 @@ A premium, state-of-the-art Sales Dashboard featuring real-time AI insights, hig
    ```
 
 2. **Configure Environment Variables**:
-   Create a `.env` file in the root directory (one has been provided for you):
+   Create a `.env` file in the root directory (one has been provided for you as `.env.example`):
    ```env
    # Google Gemini AI
-   VITE_GEMINI_KEY=your_gemini_key_here
+   NEXT_PUBLIC_GEMINI_KEY=your_gemini_key_here
 
    # Database Mode: 'CSV' or 'SUPABASE'
    DATA_SOURCE=CSV
@@ -37,10 +37,9 @@ A premium, state-of-the-art Sales Dashboard featuring real-time AI insights, hig
 
 3. **Start the Dashboard**:
    ```bash
-   npm run dev:all
+   npm run dev
    ```
-   - Frontend: [http://localhost:5180](http://localhost:5180)
-   - API Server: [http://localhost:5001](http://localhost:5001)
+   - Dashboard & API Server: [http://localhost:3000](http://localhost:3000)
 
 ---
 
@@ -86,7 +85,7 @@ Now we need to tell your local dashboard how to talk to your new Supabase cloud 
 3.  **Get the Anon Key**: 
     - Go back to the Settings menu and click on **API Keys** (under the "CONFIGURATION" section).
     - Look for the row labeled `anon` and the column labeled `public`. Click **Copy** on that key.
-4.  **Edit your local .env file**: 
+4.  **Edit your local `.env` file**: 
     - Open your project folder and open the file named `.env`.
     - Change `DATA_SOURCE=CSV` to `DATA_SOURCE=SUPABASE`.
     - Paste your URL next to `SUPABASE_URL=`.
@@ -106,8 +105,16 @@ SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ...
 ### 5. Start Browsing
 Restart your development server. The dashboard will now serve live data directly from your Supabase cloud database!
 ```bash
-npm run dev:all
+npm run dev
 ```
+
+---
+
+## 🚀 Deploy to Production
+
+Ready to share your dashboard with the world? We've prepared a complete guide for deploying this Next.js app to **Vercel**. 
+
+See the **[Production Deployment Guide (production.md)](./production.md)** for step-by-step instructions.
 
 ---
 
@@ -122,8 +129,9 @@ The dashboard supports the latest Gemini models for free-tier users. You can swi
 
 ## 📜 Development Notes
 
-- **API Layer**: `server.js` serves the data.
+- **Framework**: Upgraded to Next.js 15+ using the App Router.
+- **API Layer**: `app/api/sales/route.js` serves the data as a Serverless function.
 - **Data Logic**: `data-layer.js` handles the switching logic between CSV and DB.
-- **Components**: The UI is modularized in `src/App.jsx` for easy styling.
+- **Components**: The UI is modularized in `app/page.jsx` for easy styling.
 
 *Built for high-performance analytics by Vortex Intelligence.*
